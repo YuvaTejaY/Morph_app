@@ -1,0 +1,122 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--<title>Dashboard</title>-->
+<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+
+<!--<h1>📊 Analysis Dashboard</h1>-->
+
+<!--<h2>{{ result }}</h2>-->
+
+<!--<h3>Confidence: {{ confidence }}%</h3>-->
+
+<!--&lt;!&ndash; GRAPH &ndash;&gt;-->
+<!--<canvas id="chart"></canvas>-->
+
+<!--<script>-->
+<!--new Chart(document.getElementById("chart"), {-->
+<!--    type: "pie",-->
+<!--    data: {-->
+<!--        labels: ["Morphed", "Original"],-->
+<!--        datasets: [{-->
+<!--            data: [{{ morph }}, {{ original }}],-->
+<!--            backgroundColor: ["#ef4444", "#22c55e"]-->
+<!--        }]-->
+<!--    }-->
+<!--});-->
+<!--</script>-->
+
+<!--&lt;!&ndash; CURRENT VIDEO &ndash;&gt;-->
+<!--<h3>Latest Result</h3>-->
+<!--<video controls width="200">-->
+<!--    <source src="{{ url_for('static', filename='results/' + current_video) }}" type="video/mp4">-->
+<!--</video>-->
+
+
+<!--&lt;!&ndash; HISTORY &ndash;&gt;-->
+<!--<h3>Previous Results</h3>-->
+<!--<div class="grid">-->
+<!--{% for video in videos %}-->
+<!--<div class="card">-->
+<!--<video controls>-->
+<!--    <source src="{{ url_for('static', filename='results/' + video) }}" type="video/mp4">-->
+<!--</video>-->
+<!--</div>-->
+<!--{% endfor %}-->
+<!--</div>-->
+
+<!--<br>-->
+<!--<a href="/">⬅ Back</a>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+<h1>📊 Analysis Dashboard</h1>
+
+<h2>{{ result }}</h2>
+<h3>Confidence: {{ confidence }}%</h3>
+
+<!-- GRAPH (SMALL SIZE) -->
+<div style="width:300px; margin:auto;">
+    <canvas id="chart"></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById("chart"), {
+    type: "pie",
+    data: {
+        labels: ["Morphed", "Original"],
+        datasets: [{
+            data: [{{ morph }}, {{ original }}],
+            backgroundColor: ["#ef4444", "#22c55e"]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true
+    }
+});
+</script>
+
+<!-- CURRENT VIDEO (SMALL SIZE) -->
+<h3>Latest Result</h3>
+<video controls width="300" style="display:block; margin:auto; border-radius:10px;">
+    <source src="{{ url_for('static', filename='results/' + current_video) }}" type="video/mp4">
+</video>
+
+<!-- HISTORY -->
+<h3>Previous Results</h3>
+<div class="grid">
+{% for video in videos %}
+<div class="card">
+<video controls width="200">
+    <source src="{{ url_for('static', filename='results/' + video) }}" type="video/mp4">
+</video>
+</div>
+{% endfor %}
+</div>
+
+<br>
+<a href="/">⬅ Back</a>
+
+</div>
+
+</body>
+</html>

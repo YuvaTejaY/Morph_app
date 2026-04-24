@@ -1,0 +1,26 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>DeepScan AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+    <div class="hero">
+    <h1>DeepFake Detection AI</h1>
+    <p>Upload a video and detect morphing instantly</p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+
+    <div class="upload-box">
+    <input type="file" name="video" required>
+    </div>
+
+    <button class="btn">Analyze</button>
+
+    </form>
+
+    </div>
+
+    </body>
+    </html>
